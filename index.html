@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vũ Cao Nam - Personal Website</title>
+    <title>Vũ Cao Nam - Cybersecurity Enthusiast</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,28 +12,371 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Background Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            z-index: -1;
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00f5ff, #ff00f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00f5ff, #ff00f5);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #333;
-        }
-        
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-width: 500px;
-            width: 90%;
-            animation: fadeInUp 0.8s ease-out;
+            padding: 0 2rem;
         }
         
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, #00f5ff, #ff00f5) border-box;
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .profile-photo.no-image {
+            background: linear-gradient(45deg, #00f5ff, #ff00f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #b0b0b0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00f5);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .about-text h3 {
+            color: #00f5ff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 245, 255, 0.2);
+        }
+        
+        .skill-card i {
+            font-size: 3rem;
+            color: #00f5ff;
+            margin-bottom: 1rem;
+        }
+        
+        /* Social Links */
+        .social-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .social-link:hover::before {
+            opacity: 1;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #8b9dc3); }
+        .instagram { background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); }
+        .tiktok { background: linear-gradient(45deg, #000000, #ff0050); }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00f5ff;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00f5ff;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00f5);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -45,164 +388,250 @@
             }
         }
         
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            border: 4px solid #667eea;
-        }
-        
-        .profile-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .profile-photo.no-image {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: white;
-            font-weight: bold;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-        
-        .description {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            line-height: 1.6;
-            color: #555;
-            border-left: 4px solid #667eea;
-        }
-        
-        .description h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            text-decoration: none;
-            color: white;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .facebook {
-            background: linear-gradient(135deg, #3b5998, #8b9dc3);
-        }
-        
-        .instagram {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-        }
-        
-        .tiktok {
-            background: linear-gradient(135deg, #000000, #ff0050);
-        }
-        
-        .footer {
-            margin-top: 30px;
-            color: #888;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
             
-            h1 {
-                font-size: 2em;
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .profile-photo {
+                width: 150px;
+                height: 150px;
             }
             
             .social-links {
-                gap: 15px;
+                gap: 1rem;
             }
             
             .social-link {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
             }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="profile-photo">
-            <img src="profile.jpg" alt="Vũ Cao Nam" onerror="this.parentNode.innerHTML='<div class=\'no-image\'>VCN</div>';">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">VCN</div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#about">Về tôi</a></li>
+                <li><a href="#social">Mạng xã hội</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
         </div>
-        
-        <h1>Vũ Cao Nam</h1>
-        <p class="subtitle">Học sinh cấp 3 | Khoa học tự nhiên</p>
-        
-        <div class="description">
-            <h3>🎯 Nghề nghiệp mơ ước</h3>
-            <p><strong>Cybersecurity Specialist</strong></p>
-            <p>Đam mê bảo mật thông tin và công nghệ</p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-photo">
+                <img src="https://namvu2312.github.io/profile.jpg" alt="Vũ Cao Nam" onerror="this.parentNode.classList.add('no-image'); this.parentNode.innerHTML='VCN';">
+            </div>
             
-            <h3 style="margin-top: 20px;">👨‍🎓 Về tôi</h3>
-            <p>Tôi là người ít nói nhưng luôn tích cực tham gia các hoạt động của trường và lớp. Hiện đang theo học các môn khoa học tự nhiên với mục tiêu trở thành chuyên gia về an ninh mạng.</p>
+            <h1>Vũ Cao Nam</h1>
+            <p class="subtitle">Cybersecurity Enthusiast | Học sinh cấp 3</p>
+            <p style="margin-bottom: 2rem; color: #b0b0b0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Đam mê về an ninh mạng và công nghệ thông tin. Hiện đang theo học các môn khoa học tự nhiên 
+                với mục tiêu trở thành chuyên gia bảo mật hàng đầu.
+            </p>
+            <a href="#contact" class="cta-button">
+                <i class="fas fa-envelope"></i> Liên hệ với tôi
+            </a>
         </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+        <h2 class="section-title">Về Tôi</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3><i class="fas fa-shield-alt"></i> Tương lai Cybersecurity</h3>
+                <p>Mặc dù còn là học sinh cấp 3, tôi đã có niềm đam mê mãnh liệt với lĩnh vực an ninh mạng. 
+                Tôi tin rằng trong thời đại số hóa hiện nay, việc bảo vệ thông tin và hệ thống là vô cùng quan trọng.</p>
+            </div>
+            
+            <div class="about-text">
+                <h3><i class="fas fa-user"></i> Tính cách</h3>
+                <p>Tôi là người ít nói nhưng luôn hành động. Mặc dù không thích thể hiện nhiều, 
+                tôi vẫn tích cực tham gia đầy đủ các hoạt động của trường và lớp, 
+                luôn cố gắng đóng góp tích cực cho cộng đồng.</p>
+            </div>
+        </div>
+        
+        <div class="skills">
+            <div class="skill-card fade-in">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Học tập</h3>
+                <p>Tập trung vào các môn khoa học tự nhiên, đặc biệt là toán học và vật lý - nền tảng cho công nghệ</p>
+            </div>
+            
+            <div class="skill-card fade-in">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Cybersecurity</h3>
+                <p>Đam mê tìm hiểu về bảo mật thông tin, ethical hacking và các công nghệ bảo vệ hệ thống</p>
+            </div>
+            
+            <div class="skill-card fade-in">
+                <i class="fas fa-users"></i>
+                <h3>Hoạt động</h3>
+                <p>Tham gia tích cực các hoạt động tập thể, phát triển kỹ năng làm việc nhóm và lãnh đạo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section id="social" class="social-section fade-in">
+        <h2 class="section-title">Kết Nối Với Tôi</h2>
+        <p style="color: #b0b0b0; max-width: 600px; margin: 0 auto 2rem;">
+            Hãy kết nối với tôi trên các mạng xã hội để cùng chia sẻ về công nghệ, học tập và cuộc sống!
+        </p>
         
         <div class="social-links">
             <a href="https://www.facebook.com/vu.nam.143712" target="_blank" class="social-link facebook" title="Facebook">
-                <span style="font-size: 28px;">📘</span>
+                <i class="fab fa-facebook-f"></i>
             </a>
             
             <a href="https://www.instagram.com/nammvu.12?igsh=ZDRscGVjamEzdmN4&utm_source=qr" target="_blank" class="social-link instagram" title="Instagram">
-                <span style="font-size: 28px;">📸</span>
+                <i class="fab fa-instagram"></i>
             </a>
             
             <a href="https://www.tiktok.com/@vo_kazutora29?_r=1&_d=ejc4kif1lk8da0&sec_uid=MS4wLjABAAAAPWVjoMLBhAsQ7R5y0afCSm1XX0x919h7H9NuDCZr-iLR5zU0WAuHau-_YzbKgwNE&share_author_id=7109503124872725506&sharer_language=vi&source=h5_t&u_code=e29e56lij8g37i&item_author_type=1&utm_source=copy&tt_from=copy&enable_checksum=1&utm_medium=ios&share_link_id=17FA12E5-DBBB-4A36-8D59-B10798AFDB84&user_id=7109503124872725506&sec_user_id=MS4wLjABAAAAPWVjoMLBhAsQ7R5y0afCSm1XX0x919h7H9NuDCZr-iLR5zU0WAuHau-_YzbKgwNE&social_share_type=4&ug_btm=b8727,b0&utm_campaign=client_share&share_app_id=1180" target="_blank" class="social-link tiktok" title="TikTok">
-                <span style="font-size: 28px;">🎵</span>
+                <i class="fab fa-tiktok"></i>
             </a>
         </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <h2 class="section-title">Liên Hệ</h2>
+        <p style="text-align: center; color: #b0b0b0; margin-bottom: 2rem;">
+            Có câu hỏi hoặc muốn hợp tác? Hãy gửi tin nhắn cho tôi!
+        </p>
         
-        <div class="footer">
-            <p>© 2024 Vũ Cao Nam. Made with ❤️</p>
-        </div>
-    </div>
+        <form class="contact-form" action="#" method="POST">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Họ và tên</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject"><i class="fas fa-tag"></i> Chủ đề</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message"><i class="fas fa-comment"></i> Tin nhắn</label>
+                <textarea id="message" name="message" required placeholder="Viết tin nhắn của bạn ở đây..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Gửi tin nhắn
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Vũ Cao Nam. Made with <i class="fas fa-heart" style="color: #ff00f5;"></i> and passion for Cybersecurity</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Form submission (placeholder - you'll need to implement backend)
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Placeholder alert (replace with actual form handling)
+            alert(`Cảm ơn ${name}! Tin nhắn của bạn đã được gửi. Tôi sẽ phản hồi sớm nhất có thể.`);
+            
+            // Reset form
+            this.reset();
+            
+            // In thực tế, bạn sẽ cần:
+            // 1. Dùng service như Formspree, Netlify Forms, hoặc EmailJS
+            // 2. Hoặc tạo backend API để xử lý form
+        });
+    </script>
 </body>
 </html>
