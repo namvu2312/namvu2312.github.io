@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vũ Cao Nam - Personal Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -48,15 +49,26 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 4px solid #667eea;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-photo.no-image {
             background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
             font-size: 60px;
             color: white;
             font-weight: bold;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         h1 {
@@ -159,7 +171,7 @@
 <body>
     <div class="container">
         <div class="profile-photo">
-            VCN
+            <img src="profile.jpg" alt="Vũ Cao Nam" onerror="this.parentNode.innerHTML='<div class=\'no-image\'>VCN</div>';">
         </div>
         
         <h1>Vũ Cao Nam</h1>
@@ -176,15 +188,15 @@
         
         <div class="social-links">
             <a href="https://www.facebook.com/vu.nam.143712" target="_blank" class="social-link facebook" title="Facebook">
-                📘
+                <span style="font-size: 28px;">📘</span>
             </a>
             
             <a href="https://www.instagram.com/nammvu.12?igsh=ZDRscGVjamEzdmN4&utm_source=qr" target="_blank" class="social-link instagram" title="Instagram">
-                📷
+                <span style="font-size: 28px;">📸</span>
             </a>
             
             <a href="https://www.tiktok.com/@vo_kazutora29?_r=1&_d=ejc4kif1lk8da0&sec_uid=MS4wLjABAAAAPWVjoMLBhAsQ7R5y0afCSm1XX0x919h7H9NuDCZr-iLR5zU0WAuHau-_YzbKgwNE&share_author_id=7109503124872725506&sharer_language=vi&source=h5_t&u_code=e29e56lij8g37i&item_author_type=1&utm_source=copy&tt_from=copy&enable_checksum=1&utm_medium=ios&share_link_id=17FA12E5-DBBB-4A36-8D59-B10798AFDB84&user_id=7109503124872725506&sec_user_id=MS4wLjABAAAAPWVjoMLBhAsQ7R5y0afCSm1XX0x919h7H9NuDCZr-iLR5zU0WAuHau-_YzbKgwNE&social_share_type=4&ug_btm=b8727,b0&utm_campaign=client_share&share_app_id=1180" target="_blank" class="social-link tiktok" title="TikTok">
-                🎵
+                <span style="font-size: 28px;">🎵</span>
             </a>
         </div>
         
