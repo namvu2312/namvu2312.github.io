@@ -536,7 +536,10 @@
             Có câu hỏi hoặc muốn hợp tác? Hãy gửi tin nhắn cho tôi!
         </p>
         
-        <form class="contact-form" action="#" method="POST">
+        <form class="contact-form" action="https://formspree.io/f/xpwjggwq" method="POST">
+            <input type="hidden" name="_subject" value="Tin nhắn mới từ website VCN" />
+            <input type="hidden" name="_next" value="https://namvu2312.github.io/#contact" />
+            <input type="hidden" name="_language" value="vi" />
             <div class="form-group">
                 <label for="name"><i class="fas fa-user"></i> Họ và tên</label>
                 <input type="text" id="name" name="name" required>
@@ -611,26 +614,28 @@
             }
         });
 
-        // Form submission (placeholder - you'll need to implement backend)
+        // Form submission với Formspree
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
             
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
+            // Hiển thị loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+            submitBtn.disabled = true;
             
-            // Placeholder alert (replace with actual form handling)
-            alert(`Cảm ơn ${name}! Tin nhắn của bạn đã được gửi. Tôi sẽ phản hồi sớm nhất có thể.`);
-            
-            // Reset form
-            this.reset();
-            
-            // In thực tế, bạn sẽ cần:
-            // 1. Dùng service như Formspree, Netlify Forms, hoặc EmailJS
-            // 2. Hoặc tạo backend API để xử lý form
+            // Sau 2 giây hiển thị thông báo (Formspree sẽ xử lý việc gửi)
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Đã gửi!';
+                submitBtn.style.background = 'linear-gradient(45deg, #00ff00, #00cc00)';
+                
+                // Reset sau 3 giây
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = 'linear-gradient(45deg, #00f5ff, #ff00f5)';
+                    this.reset();
+                }, 3000);
+            }, 1000);
         });
     </script>
 </body>
