@@ -1,694 +1,961 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vũ Cao Nam - Cybersecurity Enthusiast</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* Background Animation */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
-            z-index: -1;
-            animation: gradientShift 10s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-        
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #00f5ff, #ff00f5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(45deg, #00f5ff, #ff00f5);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 2rem;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .profile-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            position: relative;
-            overflow: hidden;
-            border: 4px solid transparent;
-            background: linear-gradient(45deg, #00f5ff, #ff00f5) border-box;
-            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
-        }
-        
-        .profile-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .profile-photo.no-image {
-            background: linear-gradient(45deg, #00f5ff, #ff00f5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            font-weight: bold;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #ff00f5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #b0b0b0;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #00f5ff, #ff00f5);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 1rem;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4);
-        }
-        
-        /* About Section */
-        .about {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #00f5ff, #ff00f5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .about-text {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .about-text h3 {
-            color: #00f5ff;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 245, 255, 0.2);
-        }
-        
-        .skill-card i {
-            font-size: 3rem;
-            color: #00f5ff;
-            margin-bottom: 1rem;
-        }
-        
-        /* Social Links */
-        .social-section {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.02);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .social-link {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .social-link:hover::before {
-            opacity: 1;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .facebook { background: linear-gradient(45deg, #3b5998, #8b9dc3); }
-        .instagram { background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); }
-        .tiktok { background: linear-gradient(45deg, #000000, #ff0050); }
-        
-        /* Contact Section */
-        .contact {
-            padding: 5rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 2rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #00f5ff;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #00f5ff;
-            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #ff00f5);
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4);
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .profile-photo {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .social-links {
-                gap: 1rem;
-            }
-            
-            .social-link {
-                width: 60px;
-                height: 60px;
-                font-size: 1.2rem;
-            }
-            
-            .contact-form {
-                padding: 2rem;
-            }
-        }
-        
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vũ Cao Nam — Cybersecurity Enthusiast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #060908;
+      --surface:   #0c1210;
+      --surface-2: #131a17;
+      --border:    rgba(255,255,255,0.055);
+      --border-lg: rgba(255,255,255,0.10);
+      --text:      #dce8e2;
+      --text-muted:#6e8078;
+      --text-dim:  #3a4f45;
+      --accent:    #20e07a;
+      --accent-dim:rgba(32,224,122,0.10);
+      --accent-glow:rgba(32,224,122,0.18);
+      --red:       #f05c5c;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --nav-h:     64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent-glow); color: var(--accent); }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 4px; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: rgba(6,9,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--text-muted); }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width .25s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(32,224,122,0.3);
+      padding: 6px 14px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      transition: background .2s, border-color .2s;
+    }
+    .nav-cta:hover { background: var(--accent-dim); border-color: var(--accent); }
+
+    /* ── Sections ── */
+    section {
+      padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Hero ── */
+    #home {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-top: var(--nav-h);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp .6s .2s forwards;
+    }
+    .hero-eyebrow::before { content: '> '; color: var(--text-dim); }
+
+    .hero-name {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      opacity: 0; animation: fadeUp .7s .35s forwards;
+    }
+
+    .hero-sub {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp .7s .45s forwards;
+    }
+    .hero-sub .accent { color: var(--accent); }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp .7s .55s forwards;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp .7s .65s forwards;
+    }
+
+    .btn-primary {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity .2s, transform .2s;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border-lg);
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--text-dim); letter-spacing: 0.1em;
+      opacity: 0; animation: fadeUp .7s .9s forwards;
+    }
+    .hero-scroll-line {
+      width: 40px; height: 1px; background: var(--text-dim);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-lg), transparent);
+      margin: 0 clamp(1.5rem, 5vw, 4rem);
+      max-width: 1100px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    /* ── About ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .about-text h3 {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .about-cards {
+      display: flex; flex-direction: column; gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .about-card {
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      transition: background .2s;
+    }
+    .about-card:last-child { border-bottom: none; }
+    .about-card:hover { background: var(--surface-2); }
+
+    .about-card-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .about-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .skill-item {
+      padding: 1.75rem 1.5rem;
+      background: var(--surface);
+      transition: background .2s;
+      position: relative;
+    }
+    .skill-item::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 2px; height: 0;
+      background: var(--accent);
+      transition: height .3s ease;
+    }
+    .skill-item:hover { background: var(--surface-2); }
+    .skill-item:hover::before { height: 100%; }
+    .skill-item:not(:last-child) { border-right: 1px solid var(--border); }
+
+    .skill-icon {
+      font-size: 22px; margin-bottom: 0.75rem;
+    }
+    .skill-name {
+      font-family: var(--font-head);
+      font-size: 14px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .skill-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Projects ── */
+    .project-card {
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .project-card:hover { border-color: rgba(32,224,122,0.25); }
+
+    .project-header {
+      padding: 2.5rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(32,224,122,0.2);
+      padding: 4px 12px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .project-links {
+      display: flex; flex-direction: column; gap: 0.5rem; flex-shrink: 0;
+    }
+    .project-link {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      border: 1px solid var(--border-lg);
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+      text-align: center;
+    }
+    .project-link.primary { color: var(--accent); border-color: rgba(32,224,122,0.25); }
+    .project-link:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+    .project-body {
+      padding: 2rem 2.5rem;
+      background: var(--bg);
+    }
+
+    .project-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .feature-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+    .feature-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .feature-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .project-stack {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stack-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+
+    /* ── Social ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .social-item {
+      padding: 2rem 1.75rem;
+      background: var(--surface);
+      text-decoration: none;
+      transition: background .2s;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .social-item:last-child { border-right: none; }
+    .social-item:hover { background: var(--surface-2); }
+
+    .social-platform {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .social-name {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .social-handle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .social-arrow {
+      margin-top: auto;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--text-dim);
+      transition: color .2s, transform .2s;
+    }
+    .social-item:hover .social-arrow { color: var(--accent); transform: translate(3px, -3px); }
+
+    /* ── Contact ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-head);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .contact-info p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .contact-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 2rem;
+      padding: 10px 16px;
+      border: 1px solid var(--border-lg);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .contact-form {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .form-field {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    input, textarea, select {
+      background: var(--surface);
+      border: 1px solid var(--border-lg);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color .2s;
+      resize: none;
+      width: 100%;
+    }
+    input:focus, textarea:focus {
+      border-color: rgba(32,224,122,0.5);
+    }
+    input::placeholder, textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      max-width: 1100px + 8rem;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+    footer p span { color: var(--accent); }
+    .footer-link {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color .2s;
+    }
+    .footer-link:hover { color: var(--text-muted); }
+
+    /* ── Section heading ── */
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    /* ── Cursor blink ── */
+    .cursor {
+      display: inline-block;
+      width: 3px; height: 1em;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-left: 4px;
+      animation: blink 1.1s step-end infinite;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: none;
+    }
+
+    /* ── Mobile ── */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--text-muted); transition: .3s;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .project-header { flex-direction: column; }
+      .project-links { flex-direction: row; }
+      .social-grid { grid-template-columns: 1fr; }
+      .social-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .social-item:last-child { border-bottom: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .skill-item:not(:last-child) { border-right: none; }
+      .skill-item { border-bottom: 1px solid var(--border); }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">VCN</div>
-            <ul class="nav-links">
-                <li><a href="#home">Trang chủ</a></li>
-                <li><a href="#about">Về tôi</a></li>
-                <li><a href="#projects">Dự án</a></li>
-                <li><a href="#social">Mạng xã hội</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-photo">
-                <img src="https://namvu2312.github.io/profile.jpg" alt="Vũ Cao Nam" onerror="this.parentNode.classList.add('no-image'); this.parentNode.innerHTML='VCN';">
-            </div>
-            
-            <h1>Vũ Cao Nam</h1>
-            <p class="subtitle">Cybersecurity Enthusiast | Học sinh cấp 3</p>
-            <p style="margin-bottom: 2rem; color: #b0b0b0; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Đam mê về an ninh mạng và công nghệ thông tin. Hiện đang theo học các môn khoa học tự nhiên 
-                với mục tiêu trở thành chuyên gia bảo mật hàng đầu.
-            </p>
-            <a href="#contact" class="cta-button">
-                <i class="fas fa-envelope"></i> Liên hệ với tôi
-            </a>
-        </div>
-    </section>
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">VCN<span>_</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Về tôi</a></li>
+      <li><a href="#projects">Dự án</a></li>
+      <li><a href="#social">Mạng xã hội</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Liên hệ →</a>
+    <button class="hamburger" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <!-- About Section -->
-    <section id="about" class="about fade-in">
-        <h2 class="section-title">Về Tôi</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3><i class="fas fa-shield-alt"></i> Tương lai Cybersecurity</h3>
-                <p>Mặc dù còn là học sinh cấp 3, tôi đã có niềm đam mê mãnh liệt với lĩnh vực an ninh mạng. 
-                Tôi tin rằng trong thời đại số hóa hiện nay, việc bảo vệ thông tin và hệ thống là vô cùng quan trọng.</p>
-            </div>
-            
-            <div class="about-text">
-                <h3><i class="fas fa-user"></i> Tính cách</h3>
-                <p>Tôi là người ít nói nhưng luôn hành động. Mặc dù không thích thể hiện nhiều, 
-                tôi vẫn tích cực tham gia đầy đủ các hoạt động của trường và lớp, 
-                luôn cố gắng đóng góp tích cực cho cộng đồng.</p>
-            </div>
-        </div>
-        
-        <div class="skills">
-            <div class="skill-card fade-in">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>Học tập</h3>
-                <p>Tập trung vào các môn khoa học tự nhiên, đặc biệt là toán học và vật lý - nền tảng cho công nghệ</p>
-            </div>
-            
-            <div class="skill-card fade-in">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Cybersecurity</h3>
-                <p>Đam mê tìm hiểu về bảo mật thông tin, ethical hacking và các công nghệ bảo vệ hệ thống</p>
-            </div>
-            
-            <div class="skill-card fade-in">
-                <i class="fas fa-users"></i>
-                <h3>Hoạt động</h3>
-                <p>Tham gia tích cực các hoạt động tập thể, phát triển kỹ năng làm việc nhóm và lãnh đạo</p>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section id="home" style="position:relative;">
+    <p class="hero-eyebrow">init portfolio.exe</p>
+    <h1 class="hero-name">Vũ Cao Nam</h1>
+    <p class="hero-sub"><span class="accent">Cybersecurity</span> Enthusiast<span class="cursor"></span></p>
+    <p class="hero-desc">
+      Học sinh cấp 3 với niềm đam mê bảo mật thông tin và công nghệ. 
+      Đang xây dựng nền tảng vững chắc để trở thành chuyên gia an ninh mạng.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">Xem dự án</a>
+      <a href="#about" class="btn-ghost">Về tôi →</a>
+    </div>
+    <div class="hero-scroll">
+      <span class="hero-scroll-line"></span>
+      <span>scroll</span>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects fade-in">
-        <h2 class="section-title">Dự Án Của Tôi</h2>
-        <p style="text-align: center; color: #b0b0b0; max-width: 800px; margin: 0 auto 2rem;">
-            Những dự án tôi đã xây dựng để giải quyết các vấn đề thực tế trong cuộc sống
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label reveal">01 / về tôi</p>
+    <h2 class="section-title reveal" style="max-width: 560px;">
+      Tương lai<br>của Cybersecurity.
+    </h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h3>Xin chào, tôi là Nam.</h3>
+        <p>
+          Mặc dù còn là học sinh cấp 3, tôi đã có niềm đam mê mãnh liệt với lĩnh vực 
+          an ninh mạng. Tôi tin rằng trong thời đại số hóa hiện nay, việc bảo vệ thông 
+          tin và hệ thống là vô cùng quan trọng — và tôi muốn là người đứng ở tuyến đầu đó.
         </p>
-        
-        <div class="project-card">
-            <div class="project-header">
-                <h3><i class="fas fa-book-open"></i> VocabScan</h3>
-                <p class="project-tagline">Công Cụ Trích Xuất Từ Vựng AI</p>
-            </div>
-            
-            <div class="project-body">
-                <div class="project-description">
-                    <p>Là một học sinh đang trong quá trình ôn luyện IELTS, tôi nhận thấy việc tra cứu và ghi chép từ vựng mới từ sách hay tài liệu PDF rất tốn thời gian và dễ gây nản lòng. VocabScan là một dự án cá nhân ra đời để giải quyết chính "nỗi đau" này, giúp tự động hóa hoàn toàn quy trình học từ vựng một cách hiệu quả.</p>
-                </div>
-                
-                <div class="project-features">
-                    <h4><i class="fas fa-star"></i> Tính năng nổi bật</h4>
-                    <ul class="feature-list">
-                        <li><strong>Trích xuất văn bản thông minh (OCR):</strong> Tải lên file ảnh hoặc PDF, công cụ sẽ tự động nhận diện và chuyển đổi thành văn bản có thể tương tác.</li>
-                        <li><strong>Tạo bảng từ vựng chi tiết:</strong> Chỉ cần bôi đen từ mới, AI sẽ tạo ra một bảng phân tích đầy đủ 5 cột: Từ gốc, Nghĩa tiếng Việt, Phiên âm IPA, Câu ví dụ, và Từ loại.</li>
-                        <li><strong>Xuất file Excel tiện lợi:</strong> Lưu trữ toàn bộ danh sách từ vựng dưới dạng file Excel chỉ bằng một cú nhấp chuột, giúp cho việc ôn tập và quản lý trở nên dễ dàng.</li>
-                    </ul>
-                </div>
-                
-                <div class="project-tech">
-                    <h4><i class="fas fa-code"></i> Công nghệ sử dụng</h4>
-                    <div class="tech-tags">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Vite</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">Google Gemini AI</span>
-                        <span class="tech-tag">Vercel</span>
-                        <span class="tech-tag">OCR Technology</span>
-                    </div>
-                </div>
-                
-                <div class="project-links">
-                    <a href="https://www.vocabscan.space/" target="_blank" class="project-btn project-btn-primary">
-                        <i class="fas fa-globe"></i> Xem Demo Trực Tiếp
-                    </a>
-                    <a href="https://github.com/namvu2312" target="_blank" class="project-btn project-btn-secondary">
-                        <i class="fab fa-github"></i> Xem Source Code
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Section -->
-    <section id="social" class="social-section fade-in">
-        <h2 class="section-title">Kết Nối Với Tôi</h2>
-        <p style="color: #b0b0b0; max-width: 600px; margin: 0 auto 2rem;">
-            Hãy kết nối với tôi trên các mạng xã hội để cùng chia sẻ về công nghệ, học tập và cuộc sống!
+        <br>
+        <p>
+          Tôi là người ít nói nhưng luôn hành động. Tích cực tham gia các hoạt động 
+          của trường và lớp, luôn cố gắng đóng góp tích cực cho cộng đồng xung quanh.
         </p>
-        
-        <div class="social-links">
-            <a href="https://www.facebook.com/vu.nam.143712" target="_blank" class="social-link facebook" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            
-            <a href="https://www.instagram.com/nammvu.12?igsh=ZDRscGVjamEzdmN4&utm_source=qr" target="_blank" class="social-link instagram" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            
-            <a href="https://www.tiktok.com/@vo_kazutora29?_r=1&_d=ejc4kif1lk8da0&sec_uid=MS4wLjABAAAAPWVjoMLBhAsQ7R5y0afCSm1XX0x919h7H9NuDCZr-iLR5zU0WAuHau-_YzbKgwNE&share_author_id=7109503124872725506&sharer_language=vi&source=h5_t&u_code=e29e56lij8g37i&item_author_type=1&utm_source=copy&tt_from=copy&enable_checksum=1&utm_medium=ios&share_link_id=17FA12E5-DBBB-4A36-8D59-B10798AFDB84&user_id=7109503124872725506&sec_user_id=MS4wLjABAAAAPWVjoMLBhAsQ7R5y0afCSm1XX0x919h7H9NuDCZr-iLR5zU0WAuHau-_YzbKgwNE&social_share_type=4&ug_btm=b8727,b0&utm_campaign=client_share&share_app_id=1180" target="_blank" class="social-link tiktok" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
+      </div>
+      <div class="about-cards reveal">
+        <div class="about-card">
+          <p class="about-card-label">học tập</p>
+          <p>Tập trung vào Toán học và Vật lý — nền tảng cho công nghệ và bảo mật máy tính.</p>
         </div>
-    </section>
+        <div class="about-card">
+          <p class="about-card-label">cybersecurity</p>
+          <p>Đam mê tìm hiểu về bảo mật thông tin, ethical hacking và các công nghệ phòng thủ hệ thống.</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-label">hoạt động</p>
+          <p>Tham gia tích cực các hoạt động tập thể, phát triển kỹ năng làm việc nhóm và lãnh đạo.</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-label">ngôn ngữ</p>
+          <p>Đang luyện IELTS, ứng dụng trực tiếp vào các tài liệu bảo mật tiếng Anh.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact fade-in">
-        <h2 class="section-title">Liên Hệ</h2>
-        <p style="text-align: center; color: #b0b0b0; margin-bottom: 2rem;">
-            Có câu hỏi hoặc muốn hợp tác? Hãy gửi tin nhắn cho tôi!
+  <!-- SKILLS -->
+  <section>
+    <p class="section-label reveal">02 / kỹ năng</p>
+    <h2 class="section-title reveal">Lĩnh vực tập trung</h2>
+    <div class="skills-grid reveal">
+      <div class="skill-item">
+        <div class="skill-icon">🛡️</div>
+        <p class="skill-name">Network Security</p>
+        <p class="skill-desc">Tìm hiểu về bảo vệ hạ tầng mạng và phân tích gói tin.</p>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon">💻</div>
+        <p class="skill-name">Ethical Hacking</p>
+        <p class="skill-desc">CTF challenges, vulnerability analysis và penetration testing cơ bản.</p>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon">⚛️</div>
+        <p class="skill-name">Web Development</p>
+        <p class="skill-desc">React, Tailwind CSS — xây dựng ứng dụng thực tế phục vụ học tập.</p>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon">🤖</div>
+        <p class="skill-name">AI Integration</p>
+        <p class="skill-desc">Tích hợp các mô hình AI (Gemini, Claude) vào ứng dụng học tập.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">03 / dự án</p>
+    <h2 class="section-title reveal">
+      Những gì tôi<br>đã xây dựng.
+    </h2>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <span class="project-tag">✦ Featured Project</span>
+          <h3 class="project-title">VocabScan</h3>
+          <p class="project-subtitle">
+            Công cụ trích xuất từ vựng AI ra đời từ chính nỗi đau của quá trình ôn IELTS — 
+            tra cứu từ vựng thủ công tốn thời gian và dễ nản lòng. VocabScan tự động hóa 
+            hoàn toàn quy trình từ PDF đến bảng từ vựng chi tiết.
+          </p>
+        </div>
+        <div class="project-links">
+          <a href="https://www.vocabscan.space/" target="_blank" rel="noopener" class="project-link primary">↗ Live Demo</a>
+          <a href="https://github.com/namvu2312" target="_blank" rel="noopener" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-features">
+          <div class="feature-item">
+            <div class="feature-dot"></div>
+            <div class="feature-text">
+              <strong>OCR thông minh</strong>
+              <span>Nhận diện văn bản từ ảnh và PDF, chuyển thành nội dung tương tác được.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot"></div>
+            <div class="feature-text">
+              <strong>AI phân tích từ vựng</strong>
+              <span>Bôi đen từ mới → bảng 5 cột: nghĩa, IPA, câu ví dụ, từ loại, từ gốc.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot"></div>
+            <div class="feature-text">
+              <strong>Xuất Excel 1-click</strong>
+              <span>Lưu toàn bộ danh sách từ vựng dưới dạng file Excel để ôn tập dễ dàng.</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">Vite</span>
+          <span class="stack-tag">Tailwind CSS</span>
+          <span class="stack-tag">Google Gemini AI</span>
+          <span class="stack-tag">OCR</span>
+          <span class="stack-tag">Vercel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOCIAL -->
+  <section id="social">
+    <p class="section-label reveal">04 / mạng xã hội</p>
+    <h2 class="section-title reveal">Kết nối với tôi</h2>
+    <div class="social-grid reveal">
+      <a href="https://www.facebook.com/vu.nam.143712" target="_blank" rel="noopener" class="social-item">
+        <span class="social-platform">Facebook</span>
+        <span class="social-name">Vũ Cao Nam</span>
+        <span class="social-handle">vu.nam.143712</span>
+        <span class="social-arrow">↗</span>
+      </a>
+      <a href="https://www.instagram.com/nammvu.12" target="_blank" rel="noopener" class="social-item">
+        <span class="social-platform">Instagram</span>
+        <span class="social-name">nammvu</span>
+        <span class="social-handle">@nammvu.12</span>
+        <span class="social-arrow">↗</span>
+      </a>
+      <a href="https://github.com/namvu2312" target="_blank" rel="noopener" class="social-item">
+        <span class="social-platform">GitHub</span>
+        <span class="social-name">namvu2312</span>
+        <span class="social-handle">github.com/namvu2312</span>
+        <span class="social-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label reveal">05 / liên hệ</p>
+    <div class="contact-layout">
+      <div class="contact-info reveal">
+        <h2 class="section-title">Có câu hỏi?<br>Hãy nhắn tôi.</h2>
+        <br>
+        <p>
+          Dù bạn muốn trao đổi về cybersecurity, hợp tác dự án hay chỉ đơn giản 
+          là muốn kết nối — tôi luôn sẵn lòng lắng nghe.
         </p>
-        
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <input type="hidden" name="_subject" value="Tin nhắn mới từ website VCN" />
-            <input type="hidden" name="_next" value="https://namvu2312.github.io/#contact" />
-            <input type="hidden" name="_language" value="vi" />
-            <div class="form-group">
-                <label for="name"><i class="fas fa-user"></i> Họ và tên</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email"><i class="fas fa-envelope"></i> Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="subject"><i class="fas fa-tag"></i> Chủ đề</label>
-                <input type="text" id="subject" name="subject" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="message"><i class="fas fa-comment"></i> Tin nhắn</label>
-                <textarea id="message" name="message" required placeholder="Viết tin nhắn của bạn ở đây..."></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">
-                <i class="fas fa-paper-plane"></i> Gửi tin nhắn
-            </button>
-        </form>
-    </section>
+        <div class="contact-badge">
+          <span class="status-dot"></span>
+          Available for collaboration
+        </div>
+      </div>
+      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Họ và tên</label>
+            <input type="text" id="name" placeholder="Nguyễn Văn A" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="email@example.com" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="subject">Chủ đề</label>
+          <input type="text" id="subject" placeholder="Bạn muốn nói về điều gì?">
+        </div>
+        <div class="form-field">
+          <label for="message">Tin nhắn</label>
+          <textarea id="message" rows="5" placeholder="Chia sẻ nội dung bạn muốn trao đổi..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:fit-content;" id="submitBtn">
+          Gửi tin nhắn →
+        </button>
+      </form>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Vũ Cao Nam. Made with <i class="fas fa-heart" style="color: #ff00f5;"></i> and passion for Cybersecurity</p>
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Vũ Cao Nam</span>. Built with passion for Cybersecurity.</p>
+    <div style="display:flex; gap:1.5rem;">
+      <a href="#home" class="footer-link">↑ Top</a>
+      <a href="https://github.com/namvu2312" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+    </div>
+  </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
 
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current
+          ? 'var(--text)' : '';
+      });
+    });
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Đã gửi ✓';
+      btn.style.background = 'var(--surface-2)';
+      btn.style.color = 'var(--accent)';
+      btn.style.border = '1px solid rgba(32,224,122,0.3)';
+      btn.disabled = true;
+    }
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-            }
-        });
-
-        // Form submission với Formspree
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            // Hiển thị loading
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
-            submitBtn.disabled = true;
-            
-            // Sau 2 giây hiển thị thông báo (Formspree sẽ xử lý việc gửi)
-            setTimeout(() => {
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Đã gửi!';
-                submitBtn.style.background = 'linear-gradient(45deg, #00ff00, #00cc00)';
-                
-                // Reset sau 3 giây
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = 'linear-gradient(45deg, #00f5ff, #ff00f5)';
-                    this.reset();
-                }, 3000);
-            }, 1000);
-        });
-    </script>
+    // Mobile menu
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      if (links.style.display === 'flex') {
+        links.style.display = '';
+        links.style.position = '';
+      } else {
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = 'var(--nav-h)';
+        links.style.left = '0'; links.style.right = '0';
+        links.style.background = 'rgba(6,9,8,0.97)';
+        links.style.padding = '1.5rem 2rem';
+        links.style.borderBottom = '1px solid var(--border)';
+        links.style.gap = '1.25rem';
+      }
+    });
+  </script>
 </body>
 </html>
