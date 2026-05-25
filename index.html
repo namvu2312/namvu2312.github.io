@@ -215,6 +215,53 @@
       width: 40px; height: 1px; background: var(--text-dim);
     }
 
+    /* ── Hero layout ── */
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 4rem;
+    }
+    .hero-avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+      opacity: 0; animation: fadeUp .8s .5s forwards;
+    }
+    .hero-avatar {
+      width: 260px; height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter .4s;
+    }
+    .hero-avatar:hover { filter: grayscale(0%); }
+    .hero-avatar-wrap::before {
+      content: '';
+      position: absolute; inset: -1px;
+      border-radius: 13px;
+      border: 1px solid var(--border-lg);
+      pointer-events: none;
+    }
+    .hero-avatar-tag {
+      position: absolute; bottom: -14px; left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--bg);
+      border: 1px solid rgba(32,224,122,0.25);
+      padding: 5px 14px;
+      border-radius: 100px;
+    }
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-avatar-wrap { display: flex; justify-content: center; order: -1; }
+      .hero-avatar { width: 160px; height: 200px; }
+    }
+
     /* ── Divider ── */
     .divider {
       width: 100%; height: 1px;
@@ -670,16 +717,24 @@
 
   <!-- HERO -->
   <section id="home" style="position:relative;">
-    <p class="hero-eyebrow">init portfolio.exe</p>
-    <h1 class="hero-name">Vũ Cao Nam</h1>
-    <p class="hero-sub"><span class="accent">Cybersecurity</span> Enthusiast<span class="cursor"></span></p>
-    <p class="hero-desc">
-      Học sinh cấp 3 với niềm đam mê bảo mật thông tin và công nghệ. 
-      Đang xây dựng nền tảng vững chắc để trở thành chuyên gia an ninh mạng.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary">Xem dự án</a>
-      <a href="#about" class="btn-ghost">Về tôi →</a>
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">init portfolio.exe</p>
+        <h1 class="hero-name">Vũ Cao Nam</h1>
+        <p class="hero-sub"><span class="accent">Cybersecurity</span> Enthusiast<span class="cursor"></span></p>
+        <p class="hero-desc">
+          Học sinh cấp 3 với niềm đam mê bảo mật thông tin và công nghệ.
+          Đang xây dựng nền tảng vững chắc để trở thành chuyên gia an ninh mạng.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">Xem dự án</a>
+          <a href="#about" class="btn-ghost">Về tôi →</a>
+        </div>
+      </div>
+      <div class="hero-avatar-wrap">
+        <img src="profile.jpg" alt="Vũ Cao Nam" class="hero-avatar">
+        <span class="hero-avatar-tag">✦ Cybersecurity Enthusiast</span>
+      </div>
     </div>
     <div class="hero-scroll">
       <span class="hero-scroll-line"></span>
@@ -865,24 +920,24 @@
           Available for collaboration
         </div>
       </div>
-      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <div class="form-field">
             <label for="name">Họ và tên</label>
-            <input type="text" id="name" placeholder="Nguyễn Văn A" required>
+            <input type="text" id="name" name="name" placeholder="Nguyễn Văn A" required>
           </div>
           <div class="form-field">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="email@example.com" required>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
           </div>
         </div>
         <div class="form-field">
           <label for="subject">Chủ đề</label>
-          <input type="text" id="subject" placeholder="Bạn muốn nói về điều gì?">
+          <input type="text" id="subject" name="subject" placeholder="Bạn muốn nói về điều gì?">
         </div>
         <div class="form-field">
           <label for="message">Tin nhắn</label>
-          <textarea id="message" rows="5" placeholder="Chia sẻ nội dung bạn muốn trao đổi..." required></textarea>
+          <textarea id="message" name="message" rows="5" placeholder="Chia sẻ nội dung bạn muốn trao đổi..." required></textarea>
         </div>
         <button type="submit" class="btn-primary" style="width:fit-content;" id="submitBtn">
           Gửi tin nhắn →
@@ -927,15 +982,35 @@
       });
     });
 
-    // Form submit
-    function handleSubmit(e) {
+    // Form submit — Formspree
+    async function handleSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
-      btn.textContent = 'Đã gửi ✓';
-      btn.style.background = 'var(--surface-2)';
-      btn.style.color = 'var(--accent)';
-      btn.style.border = '1px solid rgba(32,224,122,0.3)';
+      const form = document.getElementById('contactForm');
+      btn.textContent = 'Đang gửi...';
       btn.disabled = true;
+
+      const data = new FormData(form);
+      try {
+        const res = await fetch('https://formspree.io/f/xpwjggwq', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          btn.textContent = 'Đã gửi ✓';
+          btn.style.background = 'var(--surface-2)';
+          btn.style.color = 'var(--accent)';
+          btn.style.border = '1px solid rgba(32,224,122,0.3)';
+          form.reset();
+        } else {
+          btn.textContent = 'Có lỗi xảy ra — thử lại';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Không kết nối được — thử lại';
+        btn.disabled = false;
+      }
     }
 
     // Mobile menu
